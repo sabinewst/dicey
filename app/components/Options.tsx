@@ -37,7 +37,7 @@ export default function Options({
 
   return (
     <div className="fixed left-0 top-0 flex w-full max-h-full justify-center items-center flex-col bg-gradient-to-b from-neutral-200 to-neutral-50 py-4 shadow-md">
-      <div className="mt-4">
+      <div className="mt-8">
         <button
           onClick={() => setMaxNumber((prev) => Math.max(prev - 1, 1))}
           className="mr-2 px-4 py-2 bg-red-400 text-white rounded-lg"
