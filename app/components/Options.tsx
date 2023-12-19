@@ -24,16 +24,19 @@ export default function Options({
   const addTask = () => {
     if (newTask) {
       setTasks([...tasks, newTask]);
+      localStorage.setItem("tasks", JSON.stringify([...tasks, newTask]));
       setNewTask("");
     }
   };
 
   const deleteChallenge = (index: number) => {
-    setTasks(tasks.filter((_, i) => i !== index));
+    const filtered = tasks.filter((_, i) => i !== index);
+    setTasks(filtered);
+    localStorage.setItem("tasks", JSON.stringify(filtered));
   };
 
   return (
-    <div className="fixed left-0 top-0 flex w-full justify-center items-center flex-col bg-gradient-to-b from-neutral-200 to-neutral-50 py-4 shadow-md">
+    <div className="fixed left-0 top-0 flex w-full max-h-full justify-center items-center flex-col bg-gradient-to-b from-neutral-200 to-neutral-50 py-4 shadow-md">
       <div className="mt-4">
         <button
           onClick={() => setMaxNumber((prev) => Math.max(prev - 1, 1))}
@@ -55,9 +58,9 @@ export default function Options({
       >
         {showTask ? "Hide task" : "Show task"}
       </button>
-      <div className="mt-4">
+      <div className="mt-4 overflow-auto">
         {tasks.map((task, index) => (
-          <div key={index} className="flex items-center mt-2">
+          <div key={index} className="flex items-center mt-2 justify-between">
             <span className="mr-2">{task}</span>
             <button
               onClick={() => deleteChallenge(index)}

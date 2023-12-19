@@ -47,11 +47,6 @@ export default function Home() {
     }
   }, []);
 
-  useEffect(() => {
-    // Update local storage when tasks change
-    localStorage.setItem("tasks", JSON.stringify(tasks));
-  }, [tasks]);
-
   return (
     <main className="flex min-h-screen flex-col items-center justify-between p-12">
       <button
